@@ -26,11 +26,11 @@
     </properties>
 
     <modules>
-        <module>application fundamentals</module>
-        <module>testing fundamentals</module>
-        <module>spring framework I a fundamentals</module>
-        <module>spring framework I b fundamentals</module>
-        <module>spring framework I c fundamentals</module>
+        <module>application-fundamentals</module>
+        <module>testing-fundamentals</module>
+        <module>spring-framework-I-a-fundamentals</module>
+        <module>spring-framework-I-b-fundamentals</module>
+        <module>spring-framework-I-c-fundamentals</module>
     </modules>
 
     <dependencyManagement>
