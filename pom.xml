@@ -23,6 +23,7 @@
         <mysql-connector.version>8.2.0</mysql-connector.version>
         <junit.version>5.10.0</junit.version>
         <spring-framework.version>6.0.11</spring-framework.version>
+        <jakarta-annotation.version>2.1.1</jakarta-annotation.version>
     </properties>
 
     <modules>
@@ -33,6 +34,7 @@
         <module>spring-framework-I-c-fundamentals</module>
         <module>spring-framework-I-d-fundamentals</module>
         <module>spring-framework-I-e-fundamentals</module>
+        <module>spring-framework-I-f-fundamentals</module>
     </modules>
 
     <dependencyManagement>
@@ -54,6 +56,11 @@
                 <version>${spring-framework.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>${jakarta-annotation.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
