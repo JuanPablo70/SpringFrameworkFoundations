@@ -32,6 +32,7 @@
         <module>spring-framework-I-b-fundamentals</module>
         <module>spring-framework-I-c-fundamentals</module>
         <module>spring-framework-I-d-fundamentals</module>
+        <module>spring-framework-I-e-fundamentals</module>
     </modules>
 
     <dependencyManagement>
