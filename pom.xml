@@ -36,6 +36,7 @@
         <module>spring-framework-I-e-fundamentals</module>
         <module>spring-framework-I-f-fundamentals</module>
         <module>spring-framework-I-g-fundamentals</module>
+        <module>spring-framework-I-h-fundamentals</module>
     </modules>
 
     <dependencyManagement>
