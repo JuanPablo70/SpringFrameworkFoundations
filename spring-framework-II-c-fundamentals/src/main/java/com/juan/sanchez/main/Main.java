@@ -1,0 +1,75 @@
+package com.juan.sanchez.main;
+
+import com.juan.sanchez.config.AppConfig;
+import com.juan.sanchez.service.BookService;
+import com.juan.sanchez.utils.SpringFrameworkUtils;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.util.Optional;
+
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.println("****************************************");
+        System.out.println("Main - 'spring-framework-II-c-fundamentals' - Start");
+        System.out.println("****************************************");
+
+        // Creates the beans in AppConfig
+        ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        // Gets the bean that returns BookService
+        BookService bookService = ctx.getBean(BookService.class);
+        bookService.setDefaultId(1);
+
+        BookService bookServiceA = ctx.getBean(BookService.class);
+        bookServiceA.setDefaultId(15);
+
+        BookService bookServiceB = ctx.getBean(BookService.class);
+        bookServiceB.setDefaultId(27);
+
+        System.out.println("");
+        System.out.println("---------------------------");
+        System.out.println("Report - 'findByDefaultId'");
+        System.out.println("---------------------------");
+        System.out.println("");
+        bookService.report(bookService.findByDefaultId());
+        bookServiceA.report(bookServiceA.findByDefaultId());
+        bookServiceB.report(bookServiceB.findByDefaultId());
+
+        System.out.println("");
+        System.out.println("--------------------");
+        System.out.println("Report - 'findById'");
+        System.out.println("--------------------");
+        System.out.println("");
+        bookService.report(bookService.findById(1));
+        bookService.report(bookService.findById(15));
+        bookService.report(bookService.findById(27));
+
+        System.out.println("");
+        System.out.println("-------------------");
+        System.out.println("Report - 'findAll'");
+        System.out.println("-------------------");
+        System.out.println("");
+        bookService.report(bookService.findAll());
+
+        System.out.println("");
+        System.out.println("----------------------");
+        System.out.println("Report - 'count'");
+        System.out.println("----------------------");
+        System.out.println("");
+        bookService.report(bookService.count());
+
+        Optional.ofNullable(System.getProperty("spring.application.context.report"))
+                        .ifPresent(t -> {
+                            if (t.equals("true")) {
+                                SpringFrameworkUtils.profilesAndBeansDefinitionsReport(ctx);
+                            }
+                        });
+        ctx.close();
+
+        System.out.println("");
+        System.out.println("*************************************");
+        System.out.println("Main - 'spring-framework-II-c-fundamentals' - End");
+        System.out.println("*************************************");
+    }
+}
