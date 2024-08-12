@@ -42,6 +42,7 @@
         <module>spring-framework-II-c-fundamentals</module>
         <module>spring-framework-II-d-fundamentals</module>
         <module>spring-framework-III-a-fundamentals</module>
+        <module>spring-framework-III-b-fundamentals</module>
     </modules>
 
     <dependencyManagement>
