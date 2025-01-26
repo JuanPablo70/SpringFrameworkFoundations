@@ -48,6 +48,7 @@
         <module>spring-framework-testing-I-a</module>
         <module>spring-framework-testing-I-b</module>
         <module>spring-framework-testing-I-c</module>
+        <module>spring-framework-testing-I-d</module>
     </modules>
 
     <dependencyManagement>
