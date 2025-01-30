@@ -50,6 +50,9 @@
         <module>spring-framework-testing-I-c</module>
         <module>spring-framework-testing-I-d</module>
         <module>spring-framework-testing-I-e</module>
+        <module>spring-framework-jdbc-a</module>
+        <module>spring-framework-jdbc-b</module>
+        <module>spring-framework-jdbc-c</module>
     </modules>
 
     <dependencyManagement>
