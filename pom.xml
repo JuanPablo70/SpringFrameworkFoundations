@@ -51,6 +51,7 @@
         <module>spring-framework-testing-I-d</module>
         <module>spring-framework-testing-I-e</module>
         <module>spring-framework-jdbc-a</module>
+        <module>spring-framework-jdbc-b</module>
     </modules>
 
     <dependencyManagement>
