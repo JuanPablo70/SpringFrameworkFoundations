@@ -54,6 +54,7 @@
         <module>spring-framework-jdbc-b</module>
         <module>spring-framework-jdbc-c</module>
         <module>spring-framework-tx-jdbc-a</module>
+        <module>spring-framework-tx-jdbc-b</module>
     </modules>
 
     <dependencyManagement>
