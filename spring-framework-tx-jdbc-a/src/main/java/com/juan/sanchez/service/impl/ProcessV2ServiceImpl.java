@@ -1,0 +1,130 @@
+package com.juan.sanchez.service.impl;
+
+import com.juan.sanchez.domain.Author;
+import com.juan.sanchez.domain.Book;
+import com.juan.sanchez.service.AuthorService;
+import com.juan.sanchez.service.BookService;
+import com.juan.sanchez.service.BusinessService;
+import com.juan.sanchez.service.ProcessService;
+import com.juan.sanchez.utils.DateTimeUtils;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
+@Service
+@Profile("process-v2")
+class ProcessV2ServiceImpl implements ProcessService {
+
+    private final AuthorService authorService;
+    private final BookService bookService;
+    private final BusinessService businessService;
+
+    public ProcessV2ServiceImpl(AuthorService authorService, BookService bookService, BusinessService businessService) {
+        this.authorService = authorService;
+        this.bookService = bookService;
+        this.businessService = businessService;
+    }
+
+    @Override
+    public void createProcess(Author author, Book book) {
+        LocalDateTime startDateTime = DateTimeUtils.now();
+        System.out.printf("[ProcessService] CreateProcess Starting  at: %s%n",
+                DateTimeUtils.nowFormatted(startDateTime));
+
+        try {
+            authorService.save(author);
+            businessService.doBusiness();
+            bookService.save(book);
+        } catch(Throwable t) {
+            System.out.println(" [ProcessService] Catching and Handling Throwable");
+            System.out.println("  Type   : " + t.getClass());
+            System.out.println("  Message: " + t.getMessage());
+        }
+
+        LocalDateTime endDateTime = DateTimeUtils.now();
+        System.out.printf("[ProcessService] CreateProcess Ending    at: %s - Duration: %s millis%n",
+                DateTimeUtils.nowFormatted(endDateTime),
+                DateTimeUtils.durationAsMillis(startDateTime, endDateTime));
+    }
+
+    @Override
+    public void readProcess(int idAuthor) {
+        LocalDateTime startDateTime = DateTimeUtils.now();
+        System.out.printf("[ProcessService] ReadProcess Starting  at: %s%n",
+                DateTimeUtils.nowFormatted(startDateTime));
+
+        try {
+            Author author = authorService.findByIdWithBooks(idAuthor);
+            System.out.println(" " + author.toString());
+            businessService.doBusiness();
+            for(Book book : author.getBooks()) {
+                System.out.println("  " + bookService.findById(book.getId()));
+            }
+        } catch(Throwable t) {
+            System.out.println(" [ProcessService] Catching and Handling Throwable");
+            System.out.println("  Type   : " + t.getClass());
+            System.out.println("  Message: " + t.getMessage());
+        }
+
+        LocalDateTime endDateTime = DateTimeUtils.now();
+        System.out.printf("[ProcessService] ReadProcess Ending    at: %s - Duration: %s millis%n",
+                DateTimeUtils.nowFormatted(endDateTime),
+                DateTimeUtils.durationAsMillis(startDateTime, endDateTime));
+    }
+
+    @Override
+    public void updateProcess(int idAuthor) {
+        LocalDateTime startDateTime = DateTimeUtils.now();
+        System.out.printf("[ProcessService] UpdateProcess Starting  at: %s%n",
+                DateTimeUtils.nowFormatted(startDateTime));
+
+        try {
+            Author author = authorService.findByIdWithBooks(idAuthor);
+            author.setName(author.getName().toUpperCase());
+            author.setLastname(author.getLastname().toUpperCase());
+            authorService.update(author);
+            businessService.doBusiness();
+            for(Book book : author.getBooks()) {
+                book.setTitle(book.getTitle().toUpperCase());
+                book.setIsbn(book.getIsbn().toUpperCase());
+                bookService.update(book);
+            }
+        } catch(Throwable t) {
+            System.out.println(" [ProcessService] Catching and Handling Throwable");
+            System.out.println("  Type   : " + t.getClass());
+            System.out.println("  Message: " + t.getMessage());
+        }
+
+        LocalDateTime endDateTime = DateTimeUtils.now();
+        System.out.printf("[ProcessService] UpdateProcess Ending    at: %s - Duration: %s millis%n",
+                DateTimeUtils.nowFormatted(endDateTime),
+                DateTimeUtils.durationAsMillis(startDateTime, endDateTime));
+    }
+
+    @Override
+    public void deleteProcess(int idAuthor) {
+        LocalDateTime startDateTime = DateTimeUtils.now();
+        System.out.printf("[ProcessService] DeleteProcess Starting  at: %s%n",
+                DateTimeUtils.nowFormatted(startDateTime));
+
+        try {
+            Author author = authorService.findByIdWithBooks(idAuthor);
+            for(Book book : author.getBooks()) {
+                bookService.delete(book.getId());
+            }
+            businessService.doBusiness();
+            authorService.delete(idAuthor);
+        } catch(Throwable t) {
+            System.out.println(" [ProcessService] Catching and Handling Throwable");
+            System.out.println("  Type   : " + t.getClass());
+            System.out.println("  Message: " + t.getMessage());
+        }
+
+        LocalDateTime endDateTime = DateTimeUtils.now();
+        System.out.printf("[ProcessService] DeleteProcess Ending    at: %s - Duration: %s millis%n",
+                DateTimeUtils.nowFormatted(endDateTime),
+                DateTimeUtils.durationAsMillis(startDateTime, endDateTime));
+    }
+
+}
