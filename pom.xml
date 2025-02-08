@@ -20,6 +20,7 @@
         <maven.surefire.plugin.version>3.1.2</maven.surefire.plugin.version>
         <maven.surefire-junit5.version>1.2.1</maven.surefire-junit5.version>
 
+        <aspectj.version>1.9.19</aspectj.version>
         <h2.version>2.2.222</h2.version>
         <mysql-connector.version>8.2.0</mysql-connector.version>
         <junit.version>5.10.0</junit.version>
@@ -57,10 +58,17 @@
         <module>spring-framework-tx-jdbc-b</module>
         <module>spring-framework-tx-jdbc-c</module>
         <module>spring-framework-tx-jdbc-d</module>
+        <module>spring-framework-aop-a</module>
+        <module>spring-framework-aop-b</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
