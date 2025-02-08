@@ -59,6 +59,7 @@
         <module>spring-framework-tx-jdbc-c</module>
         <module>spring-framework-tx-jdbc-d</module>
         <module>spring-framework-aop-a</module>
+        <module>spring-framework-aop-b</module>
     </modules>
 
     <dependencyManagement>
